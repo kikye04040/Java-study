@@ -1,1 +1,64 @@
 ## 3-1 선언위치에 따른 변수의 종류
+
+```
+class Variavles {
+	int iv; // 인스턴스 변수
+	static int cv; // 클래스 변수 (static 변수, 공유 변수)
+	
+	void method() {
+		int lv = 0; // 지역변수
+	}
+}
+```
+선언 위치에 따라 변수의 종류가 달라짐
+
+------
+
+1. **인스턴스 변수** : 인스턴스마다 고유한 상태를 유지해야 하는 속성의 경우 사용
+```
+public class Person {
+    // 인스턴스 변수
+    String name;
+
+    public Person(String name) {
+        this.name = name;  // 객체마다 name 값이 다를 수 있음
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Person person1 = new Person("Alice");
+        Person person2 = new Person("Bob");
+
+        System.out.println(person1.name);  // Alice
+        System.out.println(person2.name);  // Bob
+    }
+}
+```
+예시처럼 클래스로 생성된 객체마다 서로 다른 고유한 name이라는 속성을 가져야 하기 때문에 인스턴스 변수로 저장
+
+2. **클래스 변수** : 클래스 자체에 속하는 변수로, 모든 객체가 공유하는 변수
+```
+public class Counter {
+    // 클래스 변수 (static)
+    static int count = 0;
+
+    public Counter() {
+        count++;  // 모든 객체가 count를 공유
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Counter c1 = new Counter();
+        Counter c2 = new Counter();
+
+        System.out.println(Counter.count);  // 2
+    }
+}
+```
+예시처럼 클래스로 생성된 객체들 사이에 공통된 데이터를 저장하거나 상태를 공유할 때 사용
+
+3. **지역변수** : 메서드, 생성자 또는 내부 블록에서 선언된 변수로, 해당 스코프 내에서만 사용 가능하며 호출이 끝나면 소멸
+
+------
